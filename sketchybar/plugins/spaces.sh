@@ -50,10 +50,4 @@ for sid in $(yabai -m query --spaces | jq -r '.[] | select(.["is-visible"] == tr
   sketchybar --set space.$sid display=$display
 
   update_icons "$sid"
-  
-  # Hide empty spaces
-  apps_count=$(yabai -m query --windows --space $sid | jq -r '.[] | select(.["is-minimized"] == false and .["is-hidden"] == false)' | wc -l)
-  if [ "${apps_count}" -eq 0 ]; then
-    sketchybar --set space.$sid display=0
-  fi
 done
