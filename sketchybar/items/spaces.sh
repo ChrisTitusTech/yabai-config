@@ -34,10 +34,6 @@ for sid in $(yabai -m query --spaces | jq -r '.[].index'); do
 
   sketchybar --set space.$sid label="$icon_strip"
 done
-# Hide empty spaces
-for empty_space in $(yabai -m query --spaces | jq -r '.[] | select(.windows | length == 0) | .index'); do
-  sketchybar --set space.$empty_space display=0
-done
 
 # Highlight focused space
 focused_space=$(yabai -m query --spaces | jq -r '.[] | select(.["has-focus"] == true) | .index')
